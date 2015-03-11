@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MetaData xmlns="http://www.osgi.org/xmlns/metatype/v1.2.0" localization="en_us">
+    <OCD id="org.darugna.alessandro.example.MyService"
+         name="MyService" 
+         description="Example Service">
+        
+        <AD id="enabled"  
+            name="enabled"
+            type="Boolean"
+            cardinality="0" 
+            required="true"
+            default="false" 
+            description="Enables example service."/>
+            
+    </OCD>
+    <Designate pid="org.darugna.alessandro.example.MyService">
+        <Object ocdref="org.darugna.alessandro.example.MyService"/>
+    </Designate>
+</MetaData>
