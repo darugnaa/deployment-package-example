@@ -12,14 +12,13 @@
 	
 	<modules>
 		<module>org.darugna.alessandro.example</module>
+		<module>org.darugna.alessandro.webexample</module>
 	</modules>
 
 	<properties>
 		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
 		<tycho-version>0.20.0</tycho-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
 	
 
@@ -57,6 +56,12 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>[2.3.0,4.0.0)</version>
+			<scope>provided</scope>
 		</dependency>
 		<!--
 		<dependency>
@@ -142,6 +147,15 @@
 					<source>1.7</source>
 					<target>1.7</target>
 					<!-- <compilerArgument>-err:-forbidden</compilerArgument> -->
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<strictVersions>false</strictVersions>
 				</configuration>
 			</plugin>
 
