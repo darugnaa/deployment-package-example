@@ -14,3 +14,6 @@ hs_err_pid*
 # P2 repository paths
 ws/
 
+# Build directory
+target/
+
