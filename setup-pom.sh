@@ -56,6 +56,9 @@ if [ ! -f "${SKELETON_POM}" ]; then
 	exit 1
 fi
 
+# Filter main pom
 cat ${SKELETON_POM} | sed "s:CLONEPATH:${HERE}/${LOCAL_UNZIP_DIR}:" > $FINAL_POM
 
+# Filter webapp pom, it lives alone
+cat org.darugna.alessandro.webexample/${SKELETON_POM} | sed "s:CLONEPATH:${HERE}/${LOCAL_UNZIP_DIR}:" > org.darugna.alessandro.webexample/$FINAL_POM
 echo "$FINAL_POM ready."
