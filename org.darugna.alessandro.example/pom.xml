@@ -27,65 +27,36 @@
 
 
 	<build>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh</artifactId>
-				<version>1.0-beta-6</version>
-			</extension>
-		</extensions>
-		<!-- need this piece? -->
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-			<resource>
-				<directory>.</directory>
-				<includes>
-					<include>plugin.xml</include>
-				</includes>
-			</resource>
-		</resources>
-	
 		<plugins>
 
 			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<version>2.3.5</version>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
 				<extensions>true</extensions>
-				<configuration>
-					<manifestLocation>META-INF</manifestLocation>
-					<instructions>
-						<Bundle-SymbolicName>${project.artifactId};singleton:=true</Bundle-SymbolicName>
-						<Bundle-Name>${project.name}</Bundle-Name>
-						<Bundle-Version>${project.version}</Bundle-Version>
-						<!--
-						<Include-Resource>
-							org/eclipse/paho/client/mqttv3/internal/nls=${project.basedir}/src/main/resources,
-								${project.basedir}/about.html,
-							about_files=${project.basedir}/about_files/
-						</Include-Resource>
-						-->
-						<!--
-						<Import-Package>
-							org.eclipse.kura; version="[1.0,2.0)",
-							org.eclipse.kura.cloud; version="[1.0,2.0)",
-							org.eclipse.kura.configuration; version="[1.0,2.0)",
-							org.eclipse.kura.message; version="[1.0,2.0)",
-							org.osgi.framework;version="1.4.0",
-							org.osgi.service.component;version="1.0.0",
-							org.slf4j;version="1.6.4"
-						</Import-Package>
-						<Export-Package>
-							org.darugna.alessandro.example
-						</Export-Package>
-						-->
-					</instructions>
-				</configuration>
 			</plugin>
-		</plugins>
-	
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<id>package-plugin</id>
+						<goals>
+							<goal>package-plugin</goal>
+						</goals>
+						<configuration>
+							<finalName>${project.artifactId}_${project.version}</finalName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>	
 	</build>
 
 </project>
