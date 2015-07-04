@@ -18,7 +18,7 @@
 	<artifactId>org.darugna.alessandro.webexample</artifactId>
 	<version>1.0.0</version>
 	<packaging>eclipse-plugin</packaging>
-	<name>Web component example</name>
+	<name>Web component</name>
 
 	<properties>
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
