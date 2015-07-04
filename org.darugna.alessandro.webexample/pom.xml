@@ -18,7 +18,7 @@
 	<artifactId>org.darugna.alessandro.webexample</artifactId>
 	<version>1.0.0</version>
 	<packaging>eclipse-plugin</packaging>
-	<name>org.darugna.alessandro.webexample</name>
+	<name>Web component example</name>
 
 	<properties>
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
@@ -71,36 +71,12 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
-				<version>0.20.0</version>
 				<extensions>true</extensions>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-compiler-plugin</artifactId>
-				<version>0.20.0</version>
 			</plugin>
-			<!-- 
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-packaging-plugin</artifactId>
-				<version>0.20.0</version>
-				<configuration>
-					<format>'2015'</format>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<id>package-plugin</id>
-						<goals>
-							<goal>package-plugin</goal>
-						</goals>
-						<configuration>
-							<finalName>${project.artifactId}_${project.version}</finalName>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			 -->
 			<!-- Remove CSS on clean -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

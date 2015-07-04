@@ -14,7 +14,7 @@
 	<artifactId>org.darugna.alessandro.example</artifactId>
 	<version>1.0.0</version>
 	<packaging>eclipse-plugin</packaging>
-	<name>example packaging</name>
+	<name>Configurable component example</name>
 
 
 	<properties>

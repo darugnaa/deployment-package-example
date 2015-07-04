@@ -1,0 +1,54 @@
+<project name="build-dp" default="build-dp" basedir="../../../../">
+
+	<target name="build-dp">
+    	<echo message="Building DP in ${basedir}" />
+
+		<!-- Create the manifest -->
+		<echo file="${project.build.directory}/dp_stage/META-INF/MANIFEST.MF" append="false">Manifest-Version: 1.0
+DeploymentPackage-SymbolicName: example
+DeploymentPackage-Version: ${deployment.package.version}
+
+Name: bundles/org.darugna.alessandro.example_${org.darugna.alessandro.example.version}.jar
+Bundle-SymbolicName: org.darugna.alessandro.example.version;singleton:=true
+Bundle-Version: ${org.darugna.alessandro.example.version}
+
+Name: bundles/org.darugna.alessandro.webexample_${org.darugna.alessandro.webexample.version}.jar
+Bundle-SymbolicName: org.darugna.alessandro.webexample;singleton:=true
+Bundle-Version: ${org.darugna.alessandro.webexample.version}</echo>
+
+		<!-- move everything into place -->
+		<echo message="Copying Configurable component example ${org.darugna.alessandro.example.version}" />
+        <copy    file="${basedir}/../org.darugna.alessandro.example/target/org.darugna.alessandro.example_${org.darugna.alessandro.example.version}.jar"
+                 todir="${project.build.directory}/dp_stage/bundles/" />
+                 
+        <echo message="Copying ZigBee ${org.darugna.alessandro.webexample.version}" />
+        <copy    file="${basedir}/../org.darugna.alessandro.webexample/target/org.darugna.alessandro.webexample_${org.darugna.alessandro.webexample.version}.jar"
+                 todir="${project.build.directory}/dp_stage/bundles/" />
+                 
+		<!-- Files MUST be included in the jar in the same order as they are declared in the DP MANIFEST.
+			I used alphabetical order. -->
+		<!-- https://ant.apache.org/manual/Tasks/jar.html -->
+		<local name="sortedFiles"/>
+		<pathconvert property="sortedFiles" pathsep="${line.separator}">
+			<sort>
+				<fileset dir="${project.build.directory}/dp_stage/" includes="bundles/*"/>
+			</sort>
+		</pathconvert>
+	
+		 <echo message="Generating DP with files:${line.separator}${sortedFiles}" />
+	
+		<!-- http://stackoverflow.com/questions/6341285/ant-sort-files-in-generated-jar 
+		https://github.com/apache/felix/blob/b2fbc90c5cbcba405c8392c70c808c02728f6dc1/deploymentadmin/deploymentadmin/src/main/java/org/apache/felix/deploymentadmin/spi/UpdateCommand.java
+		-->
+		<!-- Do NOT include directory entries in the JAR, only the files.
+			First, the MANIFEST.
+			Then, bundles in the correct order -->
+		<jar destfile="${basedir}/../enerlife-base_${base.deployment.package.version}.dp"
+				manifest="${project.build.directory}/dp_stage/META-INF/MANIFEST.MF"
+				includes="" filesonly="true">
+			<filelist dir="${project.build.directory}/dp_stage/" files="${sortedFiles}"/>
+		</jar>
+
+    </target>
+
+</project>
