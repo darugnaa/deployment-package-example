@@ -59,8 +59,6 @@ If (-Not (Test-Path $SKELETON_POM)) {
 }
 
 # stackoverflow.com/questions/127318/is-there-any-sed-like-utility-for-cmd-exe
+# http://stackoverflow.com/questions/9942033/java-urlfile-doesnt-work-on-windows-xp
 Write-Host "Preparing main POM"
-get-content $SKELETON_POM | %{$_ -replace "CLONEPATH","$HERE\$LOCAL_UNZIP_DIR"} | Out-File -Encoding "UTF8" pom.xml
-
-#Write-Host "Preparing example POM"
-#get-content org.darugna.alessandro.example\$SKELETON_POM | %{$_ -replace "CLONEPATH","$HERE\$LOCAL_UNZIP_DIR"} | Out-File -Encoding "UTF8" org.darugna.alessandro.example\pom.xml
+get-content $SKELETON_POM | %{$_ -replace "CLONEPATH","\$HERE\$LOCAL_UNZIP_DIR"} | Out-File -Encoding "UTF8" pom.xml
