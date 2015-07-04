@@ -8,113 +8,25 @@
 -->
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.darugna.alessandro.webexample</groupId>
+	<parent>
+		<groupId>org.darugna.alessandro</groupId>
+		<artifactId>deployment-package-example</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	
 	<artifactId>org.darugna.alessandro.webexample</artifactId>
 	<version>1.0.0</version>
-	<packaging>jar</packaging>
-	<name>org.darugna.alessandro.webexample</name>
+	<packaging>eclipse-plugin</packaging>
+	<name>Web component</name>
 
 	<properties>
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<tycho.localArtifacts>default</tycho.localArtifacts>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.eclipse.kura</groupId>
-			<artifactId>org.eclipse.kura.api</artifactId>
-			<version>[1.0,2.0)</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.kura</groupId>
-			<artifactId>org.eclipse.kura.core</artifactId>
-			<version>[1.0,2.0)</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.kura</groupId>
-			<artifactId>org.eclipse.kura.core.configuration</artifactId>
-			<version>[1.0,2.0)</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.kura</groupId>
-			<artifactId>org.eclipse.kura.core.net</artifactId>
-			<version>[1.0,2.0)</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.kura</groupId>
-			<artifactId>org.eclipse.kura.deployment.agent</artifactId>
-			<version>[1.0,2.0)</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>org.osgi.core</artifactId>
-			<version>4.3.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>org.osgi.compendium</artifactId>
-			<version>4.3.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.7</version>
-			<scope>provided</scope>
-		</dependency>
-        <dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.4</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.4</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.2.2</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>[2.3.0,4.0.0)</version>
-			<scope>provided</scope>
-		</dependency>
-
-	</dependencies>
-
-	<repositories>
- 		<repository>
-	    	<id>p2-repo-common</id>
-    		<url>file://CLONEPATH/target-definition/common/repository</url>
-    		<layout>p2</layout>
-  		</repository>
-		<repository>
-			<id>p2-repo-equinox</id>
-			<url>file://CLONEPATH/target-definition/equinox_3.8.1/repository/</url>
-			<layout>p2</layout>
-		</repository>
-	</repositories>
-
 
 	<build>
 		<!-- Generate compiled stuff in the folder used for developing mode -->
@@ -159,31 +71,12 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
-				<version>0.20.0</version>
 				<extensions>true</extensions>
 			</plugin>
-			<!-- 
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-packaging-plugin</artifactId>
-				<version>0.20.0</version>
-				<configuration>
-					<format>'2015'</format>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<id>package-plugin</id>
-						<goals>
-							<goal>package-plugin</goal>
-						</goals>
-						<configuration>
-							<finalName>${project.artifactId}_${project.version}</finalName>
-						</configuration>
-					</execution>
-				</executions>
+				<artifactId>tycho-compiler-plugin</artifactId>
 			</plugin>
-			 -->
 			<!-- Remove CSS on clean -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
