@@ -2,6 +2,7 @@
 An example on how to build [Kura] OSGi projects as Deployment Package.  
 
 After cloning the repository run `./setup-pom.sh` (or `.\setup-pom.ps1` from Windows Powershell) to setup the local target repository and generate the main pom.xml. Then invoke Maven `mvn clean verify`. Happy deploy!
+Want to reuse your local copy of Kura workspace archive? Copy `pom.skeleton.xml` into `pom.xml` and replace CLONEPATH with your local folder containing the target-definition.
 
 # Tutorial
 This tutorial is about packaging some OSGi bundles into a single Deployment Package. This format is used by Kura to install new bundles at runtime, both locally (via Kura's web interface) and remotely (via MQTT using DEPLOY-V1 cloudlet).
