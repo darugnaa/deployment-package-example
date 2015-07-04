@@ -12,9 +12,17 @@ I found no simple guide on how to accomplish this simple task from command line.
 lorem ipsum
 
 ## What is a Deployment Package?
-lorem ipsum
+A Deployment Package (DP from now on) is just a jar containing a particular MANIFEST plus multiple
+bundle jars. The MANIFEST declares names, versions and filenames of included bundles. Each jar is an OSGi bundle.
+There are a couple of oddities to be aware of in order to build a Kura-compatible DP.  
+1. The order of bundle declarations in the MANIFEST **must be** the same as the order of jars in the zip headers.
+2. Only files are allowed in the DP, directories **must not be** included in the DP zip.
+
+Kura uses Felix DeploymentAdmin to handle DPs. Empty directories will result in a null entry in [felix deploymentadmin]. A null entry will raise `"org.osgi.service.deploymentadmin.DeploymentException: Expected more bundles in the stream [...]"`.
+Same applies on non-matching file names.
 
 ## Maven build walkthrough
 lorem ipsum
 
 [Kura]:https://eclipse.org/kura/
+[felix deploymentadmin]:https://github.com/apache/felix/blob/b2fbc90c5cbcba405c8392c70c808c02728f6dc1/deploymentadmin/deploymentadmin/src/main/java/org/apache/felix/deploymentadmin/spi/UpdateCommand.java#L60
